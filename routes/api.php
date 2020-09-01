@@ -14,6 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['namespace' => 'Api', 'as' => 'api.'], static function () {
+    Route::group(['prefix' => 'auth', 'as' => 'auth.'], static function () {
+        Route::post('login', 'AuthController@login')->name('login');
+        Route::post('sign-up', 'AuthController@signUp')->name('singUp');
+
+        Route::group(['middleware' => 'auth:api'], static function() {
+            Route::get('logout', 'AuthController@logout')->name('logout');
+            Route::get('user', 'AuthController@user')->name('user');
+            Route::put('update', 'AuthController@update')->name('update');
+            Route::delete('destroy', 'AuthController@destroy')->name('destroy');
+        });
+    });
+
+    Route::group(['middleware' => 'auth:api', 'role:root'], static function() {
+        Route::resource('users', 'UserController')->except(['create', 'edit']);
+    });
 });
