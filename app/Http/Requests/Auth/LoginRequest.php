@@ -13,7 +13,7 @@ class LoginRequest extends ApiFormRequest
      */
     public function authorize(): bool
     {
-        return !auth()->check();
+        return true;
     }
 
     /**

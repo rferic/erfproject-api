@@ -4,9 +4,10 @@
 namespace App\Http\Services\User;
 
 
-use App\Http\Commands\User\GetCollectionUsers;
+use App\Http\Commands\User\GetCollectionUsersCommand;
+use App\Http\Resources\User\UserCollectionResource;
 
-class GetCollectionUserAbstract
+class GetCollectionUserService
 {
     private $filters;
     private $with;
@@ -25,9 +26,9 @@ class GetCollectionUserAbstract
         $this->order_direction = $data['order_direction'] ?? 'asc';
     }
 
-    public function execute ()
+    public function execute (): UserCollectionResource
     {
-        $command = new GetCollectionUsers(
+        $command = new GetCollectionUsersCommand(
             $this->filters,
             $this->with,
             $this->page,
@@ -35,6 +36,6 @@ class GetCollectionUserAbstract
             $this->order_column,
             $this->order_direction
         );
-        return $command->execute();
+        return new UserCollectionResource($command->execute());
     }
 }

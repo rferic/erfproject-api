@@ -3,8 +3,6 @@
 namespace App\Http\Requests\User;
 
 
-use Illuminate\Validation\Rule;
-
 class CollectionRequest extends \App\Http\Requests\CollectionRequest
 {
     /**
@@ -24,13 +22,12 @@ class CollectionRequest extends \App\Http\Requests\CollectionRequest
      */
     public function rules(): array
     {
+        $withRequest = new WithRequest();
         return $this->getCollectionRules([
             'is_verified' => 'boolean',
             'role' => 'string|exists:roles,name',
-            'with.*' => [
-                'string',
-                Rule::in(['roles'])
-            ]
+            'with' => 'array',
+            'with.*' => $withRequest->getWiths()
         ]);
     }
 }

@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
         $user->attachRole($clientRole);
 
 
-        factory(\App\User::class, 10)->create([])->each(static function ( $user ) use ( $clientRole ) {
+        factory(\App\User::class, 50)->create([])->each(static function ( $user ) use ( $clientRole ) {
             $user->attachRole($clientRole);
         });
     }

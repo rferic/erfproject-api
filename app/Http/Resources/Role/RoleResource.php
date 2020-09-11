@@ -1,18 +1,24 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Role;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property mixed name
+ * @property mixed display_name
+ * @property mixed description
+ */
 class RoleResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'name' => $this->name,

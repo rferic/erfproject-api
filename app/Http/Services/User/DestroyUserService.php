@@ -15,8 +15,9 @@ class DestroyUserService
         $this->user = $user;
     }
 
-    public function execute (): void
+    public function execute (): User
     {
         $this->user->delete();
+        return $this->user;
     }
 }

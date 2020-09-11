@@ -72,14 +72,6 @@ abstract class GetCollectionAbstract
         return $this->order_direction;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getResourceClass ()
-    {
-        return $this->resource_class;
-    }
-
     public function executeRequest ( \Illuminate\Database\Eloquent\Builder $query )
     {
         $order_column = $this->getOrderColumn();
@@ -93,13 +85,7 @@ abstract class GetCollectionAbstract
             $query->orderBy($order_column, $order_direction);
         }
 
-        $results = $query->paginate($this->getPerPage(), ['*'], 'page', $this->getPage());
-
-        if ( $this->resource_class ) {
-            return new $this->resource_class($results);
-        }
-
-        return $results;
+        return $query->paginate($this->getPerPage(), ['*'], 'page', $this->getPage())->withQueryString();
     }
 
     public function execute ()
