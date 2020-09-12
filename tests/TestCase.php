@@ -94,7 +94,7 @@ abstract class TestCase extends BaseTestCase
         return $root;
     }
 
-    protected function assertCollection ( TestResponse $response, Array $request = [], $service = null ): void
+    protected function assertCollection ( TestResponse $response, $service = null ): void
     {
         $response->assertJsonStructure([
             'message',

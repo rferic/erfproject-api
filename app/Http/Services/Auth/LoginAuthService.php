@@ -10,7 +10,7 @@ class LoginAuthService
 {
     private $request;
 
-    public function __construct ( $request )
+    public function __construct ( Array $request )
     {
         $this->request = $request;
     }
@@ -18,8 +18,8 @@ class LoginAuthService
     public function execute (): ?array
     {
         $credentials = [
-            'email' => $this->request->email,
-            'password' => $this->request->password
+            'email' => $this->request['email'],
+            'password' => $this->request['password']
         ];
 
         if ( !auth()->attempt($credentials) ) {
@@ -29,7 +29,7 @@ class LoginAuthService
         $tokenResult = auth()->user()->createToken('Personal Access Token');
         $token = $tokenResult->token;
 
-        if ( $this->request->remember_me ) {
+        if ( $this->request['remember_me'] ) {
             $token->expires_at = Carbon::now()->addWeeks(1);
         }
 

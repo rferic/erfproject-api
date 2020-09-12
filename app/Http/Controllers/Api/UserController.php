@@ -45,15 +45,15 @@ class UserController extends Controller
         $service = new CreateUserService($request->all());
         $user = $service->execute();
 
-        return $this->responseSuccess($user, 'User has been created', JsonResponse::HTTP_CREATED);
+        return $this->responseSuccess(new UserResource($user), 'User has been created', JsonResponse::HTTP_CREATED);
     }
 
     public function update ( User $user, UpdateRequest $request ): JsonResponse
     {
         $service = new UpdateUserService($user, $request->all());
-        $data = $service->execute();
+        $user = $service->execute();
 
-        return $this->responseSuccess($data, 'User has been updated', JsonResponse::HTTP_OK);
+        return $this->responseSuccess(new UserResource($user), 'User has been updated', JsonResponse::HTTP_OK);
     }
 
     public function destroy ( User $user ): JsonResponse

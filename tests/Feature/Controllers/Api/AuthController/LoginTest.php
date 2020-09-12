@@ -67,7 +67,8 @@ class LoginTest extends TestCase
 
         $this->postJson($this->route, [
                 'email' => config('default.admin.email'),
-                'password' => config('default.admin.password')
+                'password' => config('default.admin.password'),
+                'remember_me' => $this->faker->boolean
             ])
             ->assertStatus(JsonResponse::HTTP_ACCEPTED)
             ->assertJsonStructure([

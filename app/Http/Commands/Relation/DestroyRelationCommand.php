@@ -33,7 +33,7 @@ class DestroyRelationCommand extends BaseRelationCommand
         return $relation;
     }
 
-    private function getValidator (): \Illuminate\Contracts\Validation\Validator
+    public function getValidator (): \Illuminate\Contracts\Validation\Validator
     {
         return Validator::make([
             'applicant' => $this->applicant->id,

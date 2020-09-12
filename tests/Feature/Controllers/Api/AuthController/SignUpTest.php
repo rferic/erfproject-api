@@ -61,7 +61,7 @@ class SignUpTest extends TestCase
         $data = [
             'email' => $this->faker->safeEmail,
             'name' => $this->faker->name,
-            'password' => 'test123!'
+            'password' => $this->faker->password
         ];
 
         $response = $this->postJson($this->route, $data)

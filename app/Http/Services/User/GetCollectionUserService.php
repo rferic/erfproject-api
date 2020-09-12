@@ -16,7 +16,7 @@ class GetCollectionUserService
     private $order_column;
     private $order_direction;
 
-    public function __construct ( array $data )
+    public function __construct ( Array $data = [] )
     {
         $this->filters = $data['filters'] ?? [];
         $this->with = $data['with'] ?? [];

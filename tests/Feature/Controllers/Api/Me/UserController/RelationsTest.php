@@ -72,20 +72,19 @@ class RelationsTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        Passport::actingAs($this->root);
+        Passport::actingAs($this->me);
 
         $request = [
-            'user' => $this->me->id,
             'page' => $this->faker->numberBetween(1, 2),
             'per_page' => $this->faker->numberBetween(1, 20),
             'status' => $this->faker->boolean ? $this->faker->randomElement(['pending', 'friendship', 'hate']) : null
         ];
 
-        $response = $this->getJson(route($this->route, $request))
+        $response = $this->getJson(route($this->routeName, $request))
             ->assertStatus(JsonResponse::HTTP_OK);
 
         $service = new GetRelationsCollectionUserService($this->me, $request);
 
-        $this->assertCollection($response, $request, $service);
+        $this->assertCollection($response, $service);
     }
 }

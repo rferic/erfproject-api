@@ -72,7 +72,12 @@ abstract class GetCollectionAbstract
         return $this->order_direction;
     }
 
-    public function executeRequest ( \Illuminate\Database\Eloquent\Builder $query )
+    public function execute ()
+    {
+        return $this->executeRequest($this->filter());
+    }
+
+    protected function executeRequest ( \Illuminate\Database\Eloquent\Builder $query )
     {
         $order_column = $this->getOrderColumn();
         $order_direction = $this->getOrderDirection();
@@ -86,10 +91,5 @@ abstract class GetCollectionAbstract
         }
 
         return $query->paginate($this->getPerPage(), ['*'], 'page', $this->getPage())->withQueryString();
-    }
-
-    public function execute ()
-    {
-        return $this->executeRequest($this->filter());
     }
 }

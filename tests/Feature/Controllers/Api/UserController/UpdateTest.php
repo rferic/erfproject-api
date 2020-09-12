@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Controllers\Api\UserController;
 
-use App\Http\Resources\User\UserBaseResource;
+use App\Http\Resources\User\UserResource;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -87,11 +87,9 @@ class UpdateTest extends TestCase
 
         $userUpdated = $queryCreated->first();
 
-        $resource = (new UserBaseResource($userUpdated))->jsonSerialize();
+        $resource = (new UserResource($userUpdated))->jsonSerialize();
         ksort($resource);
 
-        $response->assertJsonFragment([
-            'data' => $resource
-        ]);
+        $response->assertJsonFragment(['data' => $resource]);
     }
 }

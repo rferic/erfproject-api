@@ -15,7 +15,11 @@ class GetCollectionUsersCommand extends GetCollectionAbstract implements GetColl
         $query = User::query();
 
         if ( isset($this->filters['is_verified']) ) {
-            $query->where('is_verified', (bool)$this->filters['is_verified']);
+            if ( $this->filters['is_verified'] ) {
+                $query->whereNotNull('email_verified_at');
+            } else {
+                $query->whereNull('email_verified_at');
+            }
         }
 
         if ( isset($this->filters['filter_text']) ) {

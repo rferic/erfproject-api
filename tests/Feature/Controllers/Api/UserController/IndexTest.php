@@ -117,6 +117,6 @@ class IndexTest extends TestCase
 
         $service = new GetCollectionUserService($request);
 
-        $this->assertCollection($response, $request, $service);
+        $this->assertCollection($response, $service);
     }
 }

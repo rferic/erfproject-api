@@ -22,7 +22,7 @@ class AuthController extends Controller
      */
     public function login ( LoginRequest $request ): JsonResponse
     {
-        $service = new LoginAuthService($request);
+        $service = new LoginAuthService($request->all());
         $response = $service->execute();
 
         if ( !$response ) {

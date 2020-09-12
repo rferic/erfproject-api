@@ -97,6 +97,6 @@ class RelationsTest extends TestCase
 
         $service = new GetRelationsCollectionUserService($this->me, $request);
 
-        $this->assertCollection($response, $request, $service);
+        $this->assertCollection($response, $service);
     }
 }

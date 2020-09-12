@@ -17,7 +17,7 @@ class GetRelationsCollectionUserService
     private $order_column;
     private $order_direction;
 
-    public function __construct ( User $user, Array $data )
+    public function __construct ( User $user, Array $data = [] )
     {
         $this->user = $user;
         $this->status = $data['status'] ?? null;

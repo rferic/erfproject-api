@@ -4,7 +4,6 @@
 namespace App\Http\Services\User;
 
 
-use App\Http\Resources\User\UserResource;
 use App\Role;
 use App\User;
 
@@ -22,7 +21,7 @@ class CreateUserService
         $this->password = $data['password'];
     }
 
-    public function execute (): UserResource
+    public function execute (): User
     {
         $role = Role::where('name', $this->roleDefault)->first();
         $user = User::create([
@@ -33,6 +32,6 @@ class CreateUserService
         ]);
         $user->attachRole($role);
 
-        return new UserResource($user);
+        return $user;
     }
 }
