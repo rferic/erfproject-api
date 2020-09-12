@@ -17,8 +17,7 @@
         "laravel/telescope": "^3.5",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.2",
-        "santigarcor/laratrust": "^6.1",
-      "ext-http": "*"
+        "santigarcor/laratrust": "^6.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
