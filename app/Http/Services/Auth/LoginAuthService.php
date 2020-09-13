@@ -4,7 +4,6 @@
 namespace App\Http\Services\Auth;
 
 
-use App\Http\Resources\User\UserResource;
 use Carbon\Carbon;
 
 class LoginAuthService
@@ -37,7 +36,6 @@ class LoginAuthService
         $token->save();
 
         return [
-            'me' => New UserResource(auth()->user()),
             'access_token' => $tokenResult->accessToken,
             'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString()
         ];
