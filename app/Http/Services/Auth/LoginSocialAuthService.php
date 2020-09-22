@@ -9,6 +9,7 @@ use Carbon\Carbon;
 
 class LoginSocialAuthService
 {
+    public $linkedSocialAccount;
     protected $provider;
     protected $token;
 
@@ -20,18 +21,17 @@ class LoginSocialAuthService
 
     public function execute (): ?array
     {
-        $linkedSocialAccount = LinkedSocialAccount::where('token', $this->token)
+        $this->linkedSocialAccount = LinkedSocialAccount::where('token', $this->token)
             ->where('provider_name', $this->provider)
             ->first();
 
-        if ( !$linkedSocialAccount ) {
+        if ( !$this->linkedSocialAccount ) {
             return null;
         }
 
-        auth()->loginUsingId($linkedSocialAccount->user->id, true);
+        $auth = $this->linkedSocialAccount->user;
 
-        $linkedSocialAccount->token = null;
-        $linkedSocialAccount->save();
+        auth()->loginUsingId($auth->id, true);
 
         $tokenResult = auth()->user()->createToken('Personal Access Token');
         $token = $tokenResult->token;

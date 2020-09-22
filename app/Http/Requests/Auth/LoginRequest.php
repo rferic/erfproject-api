@@ -41,7 +41,6 @@ class LoginRequest extends ApiFormRequest
             ],
             'token' => [
                 'required_if:type,social',
-                'string',
                 'exists:linked_social_accounts,token',
                 static function ( $attribute, $value, $fail ) {
                     $exists = LinkedSocialAccount::where('token', $value)
