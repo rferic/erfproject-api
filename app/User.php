@@ -52,6 +52,11 @@ class User extends Authenticatable
         'is_verified'
     ];
 
+    public function linkedSocialAccounts (): HasMany
+    {
+        return $this->hasMany(LinkedSocialAccount::class);
+    }
+
     public function applicantRelations (): HasMany
     {
         return $this->hasMany(Relation::class, 'applicant_id');

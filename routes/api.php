@@ -18,6 +18,8 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], static function () {
     // Auth routes
     Route::group(['prefix' => 'auth', 'as' => 'auth.'], static function () {
         Route::post('login', 'AuthController@login')->name('login');
+        Route::post('social-login', 'AuthController@loginSocialAuth')->name('socialAuth.login');
+        Route::post('social-login/{provider}/{frontend}', 'AuthController@redirectToSocialAuth')->name('socialAuth.redirect');
         Route::post('sign-up', 'AuthController@signUp')->name('singUp');
 
         Route::group(['middleware' => 'auth:api'], static function() {

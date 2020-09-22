@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\User;
 
+use App\Http\Resources\LinkedSocialAccount\LinkedSocialAccountResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -31,7 +32,7 @@ class UserBaseResource extends JsonResource
             'is_verified' => $this->is_verified,
             'name' => $this->name,
             'roles' => $this->roles->pluck('name'),
-            'social_data' => $this->social_data
+            'social_accounts' => LinkedSocialAccountResource::collection($this->linkedSocialAccounts()->get())
         ];
     }
 }

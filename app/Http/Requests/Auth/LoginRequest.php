@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Auth;
 
 use App\Http\Requests\ApiFormRequest;
+use App\LinkedSocialAccount;
+use Illuminate\Validation\Rule;
 
 class LoginRequest extends ApiFormRequest
 {
@@ -24,9 +26,33 @@ class LoginRequest extends ApiFormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-            'remember_me' => 'boolean'
+            'type' => [
+                'required',
+                'string',
+                Rule::in(['default', 'social'])
+            ],
+            'email' => 'required_if:type,default|string|email',
+            'password' => 'required_if:type,default|string',
+            'remember_me' => 'boolean',
+            'provider' => [
+                'required_if:type,social',
+                'string',
+                Rule::in(['github'])
+            ],
+            'token' => [
+                'required_if:type,social',
+                'string',
+                'exists:linked_social_accounts,token',
+                static function ( $attribute, $value, $fail ) {
+                    $exists = LinkedSocialAccount::where('token', $value)
+                        ->where('provider_name', request()->provider)
+                        ->exists();
+
+                    if ( !$exists ) {
+                        $fail($attribute . ' not exists');
+                    }
+                }
+            ]
         ];
     }
 }
