@@ -37,6 +37,8 @@ class AuthController extends Controller
             case 'social':
                 $service = new LoginSocialAuthService($request->provider, $request->token);
                 break;
+            default:
+                return $this->responseFail([], 'Login type not available', JsonResponse::HTTP_BAD_REQUEST);
         }
 
         return $this->loginWithService($service);

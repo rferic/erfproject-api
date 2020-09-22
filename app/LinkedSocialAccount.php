@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class LinkedSocialAccount extends Model
 {
     protected $fillable = [
+        'user_id',
         'provider_name',
         'provider_id',
         'provider_data',

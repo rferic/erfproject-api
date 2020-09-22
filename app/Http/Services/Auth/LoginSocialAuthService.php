@@ -18,11 +18,15 @@ class LoginSocialAuthService
         $this->token =  $token;
     }
 
-    public function execute (): array
+    public function execute (): ?array
     {
         $linkedSocialAccount = LinkedSocialAccount::where('token', $this->token)
             ->where('provider_name', $this->provider)
             ->first();
+
+        if ( !$linkedSocialAccount ) {
+            return null;
+        }
 
         auth()->loginUsingId($linkedSocialAccount->user->id, true);
 

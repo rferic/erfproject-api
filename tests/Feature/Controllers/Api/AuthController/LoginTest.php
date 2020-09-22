@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Controllers\Api\AuthController;
 
+use App\LinkedSocialAccount;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\JsonResponse;
@@ -31,19 +33,33 @@ class LoginTest extends TestCase
             ->assertStatus(JsonResponse::HTTP_METHOD_NOT_ALLOWED);
     }
 
-    public function testFailEmptyParams (): void
+    public function testFailEmptyType (): void
     {
         $this->withExceptionHandling();
 
         $this->postJson($this->route)
+            ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
+            ->assertJsonValidationErrors(['type']);
+    }
+
+    /*** DEFAULT LOGIN ***/
+    public function testFailEmptyParams (): void
+    {
+        $this->withExceptionHandling();
+
+        $this->postJson($this->route, [
+            'type' => 'default'
+        ])
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJsonValidationErrors(['email', 'password']);
     }
 
     public function testFailValidationParams (): void
     {
+        $this->withExceptionHandling();
 
         $this->postJson($this->route, [
+                'type' => 'default',
                 'email' => $this->faker->word,
                 'password' => $this->faker->password
             ])
@@ -53,8 +69,10 @@ class LoginTest extends TestCase
 
     public function testFailVWrongParams (): void
     {
+        $this->withExceptionHandling();
 
         $this->postJson($this->route, [
+                'type' => 'default',
                 'email' => $this->faker->email,
                 'password' => $this->faker->password
             ])
@@ -66,10 +84,73 @@ class LoginTest extends TestCase
         $this->withExceptionHandling();
 
         $this->postJson($this->route, [
+                'type' => 'default',
                 'email' => config('default.admin.email'),
                 'password' => config('default.admin.password'),
                 'remember_me' => $this->faker->boolean
             ])
+            ->assertStatus(JsonResponse::HTTP_ACCEPTED)
+            ->assertJsonStructure([
+                'message',
+                'data' => [
+                    'access_token',
+                    'expires_at'
+                ]
+            ]);
+    }
+
+    /*** SOCIAL LOGIN ***/
+    public function testSocialFailEmptyParams (): void
+    {
+        $this->withExceptionHandling();
+
+        $this->postJson($this->route, [
+            'type' => 'social'
+        ])
+            ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
+            ->assertJsonValidationErrors(['provider', 'token']);
+    }
+
+    public function testSocialFailValidationParams (): void
+    {
+        $this->withExceptionHandling();
+
+        $this->postJson($this->route, [
+            'type' => 'social',
+            'provider' => $this->faker->word,
+            'token' => $this->faker->word
+        ])
+            ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
+            ->assertJsonValidationErrors(['provider', 'token']);
+
+        $this->postJson($this->route, [
+            'type' => 'social',
+            'provider' => 'github',
+            'token' => $this->faker->word
+        ])
+            ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
+            ->assertJsonValidationErrors(['token']);
+    }
+
+    public function testSocialSuccess (): void
+    {
+        $this->withExceptionHandling();
+
+        $token = $this->faker->word;
+
+        LinkedSocialAccount::create([
+            'user_id' => User::all()->random()->id,
+            'provider_id' => $this->faker->uuid,
+            'provider_name' => 'github',
+            'provider_data' => [],
+            'token' => $token
+        ]);
+
+        $this->postJson($this->route, [
+            'type' => 'social',
+            'provider' => 'github',
+            'token' => $token
+        ])
             ->assertStatus(JsonResponse::HTTP_ACCEPTED)
             ->assertJsonStructure([
                 'message',
