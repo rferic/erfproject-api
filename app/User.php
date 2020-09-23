@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Casts\Json;
+use App\Observers\UserObserver;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -51,6 +52,12 @@ class User extends Authenticatable
     protected $appends = [
         'is_verified'
     ];
+
+    protected static function boot (): void
+    {
+        parent::boot();
+        static::observe(UserObserver::class);
+    }
 
     public function linkedSocialAccounts (): HasMany
     {
