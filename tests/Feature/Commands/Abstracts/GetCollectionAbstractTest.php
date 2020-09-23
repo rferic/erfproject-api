@@ -3,7 +3,7 @@
 namespace Tests\Feature\Commands\Abstracts;
 
 use App\Http\Commands\Abstracts\GetCollectionAbstract;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Pagination\LengthAwarePaginator;

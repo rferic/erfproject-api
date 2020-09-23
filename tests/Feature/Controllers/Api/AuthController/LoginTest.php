@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Controllers\Api\AuthController;
 
-use App\LinkedSocialAccount;
-use App\User;
+use App\Models\LinkedSocialAccount;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\JsonResponse;

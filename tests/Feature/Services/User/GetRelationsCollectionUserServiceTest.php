@@ -4,8 +4,8 @@ namespace Tests\Feature\Services\User;
 
 use App\Http\Resources\Relation\RelationCollectionResource;
 use App\Http\Services\User\GetRelationsCollectionUserService;
-use App\Relation;
-use App\User;
+use App\Models\Relation;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;

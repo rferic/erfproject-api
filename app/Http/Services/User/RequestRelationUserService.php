@@ -5,8 +5,8 @@ namespace App\Http\Services\User;
 
 
 use App\Http\Commands\Relation\CreateRelationCommand;
-use App\Relation;
-use App\User;
+use App\Models\Relation;
+use App\Models\User;
 
 class RequestRelationUserService
 {

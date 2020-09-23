@@ -3,9 +3,9 @@
 namespace Tests\Unit;
 
 
-use App\Relation;
-use App\Role;
-use App\User;
+use App\Models\Relation;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;

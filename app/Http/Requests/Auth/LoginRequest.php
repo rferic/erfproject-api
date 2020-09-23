@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Auth;
 
 use App\Http\Requests\ApiFormRequest;
-use App\LinkedSocialAccount;
+use App\Models\LinkedSocialAccount;
 use Illuminate\Validation\Rule;
 
 class LoginRequest extends ApiFormRequest

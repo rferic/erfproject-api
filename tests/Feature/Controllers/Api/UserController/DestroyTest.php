@@ -3,7 +3,7 @@
 namespace Tests\Feature\Controllers\Api\UserController;
 
 use App\Http\Resources\User\UserBaseResource;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\JsonResponse;

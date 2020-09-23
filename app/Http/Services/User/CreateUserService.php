@@ -4,8 +4,8 @@
 namespace App\Http\Services\User;
 
 
-use App\Role;
-use App\User;
+use App\Models\Role;
+use App\Models\User;
 
 class CreateUserService
 {

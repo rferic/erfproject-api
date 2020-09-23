@@ -4,8 +4,8 @@
 namespace App\Http\Commands\Relation;
 
 
-use App\Relation;
-use App\User;
+use App\Models\Relation;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class DestroyRelationCommand extends BaseRelationCommand

@@ -4,7 +4,7 @@
 namespace App\Http\Services\Auth;
 
 
-use App\LinkedSocialAccount;
+use App\Models\LinkedSocialAccount;
 use Carbon\Carbon;
 
 class LoginSocialAuthService

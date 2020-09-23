@@ -4,7 +4,7 @@
 namespace App\Http\Services\User;
 
 
-use App\User;
+use App\Models\User;
 
 class DestroyUserService
 {

@@ -18,8 +18,8 @@ use App\Http\Services\User\RequestRelationUserService;
 use App\Http\Services\User\UpdateRelationUserService;
 use App\Http\Services\User\UpdateUserService;
 use App\Http\Utils\ApiResponse;
-use App\Role;
-use App\User;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 

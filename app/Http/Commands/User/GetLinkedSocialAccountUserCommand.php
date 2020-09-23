@@ -19,7 +19,7 @@ class GetLinkedSocialAccountUserCommand
 
     public function execute ()
     {
-        return \App\LinkedSocialAccount::where('provider_name', $this->provider)
+        return \App\Models\LinkedSocialAccount::where('provider_name', $this->provider)
             ->where('provider_id', $this->providerUser->getId())
             ->first();
     }

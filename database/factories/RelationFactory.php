@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Relation;
-use App\User;
+use App\Models\Relation;
+use App\Models\User;
 use Faker\Generator as Faker;
 
 $factory->define(Relation::class, static function (Faker $faker) {

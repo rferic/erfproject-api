@@ -5,7 +5,8 @@ namespace App\Http\Services\User;
 
 
 use App\Http\Commands\Relation\UpdateRelationCommand;
-use App\User;
+use App\Models\Relation;
+use App\Models\User;
 
 class UpdateRelationUserService
 {
@@ -16,7 +17,7 @@ class UpdateRelationUserService
         $this->command = new UpdateRelationCommand($applicant, $addressee, $status);
     }
 
-    public function execute (): \App\Relation
+    public function execute (): Relation
     {
         return $this->command->execute();
     }

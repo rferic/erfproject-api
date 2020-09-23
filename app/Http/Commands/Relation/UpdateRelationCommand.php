@@ -4,7 +4,7 @@
 namespace App\Http\Commands\Relation;
 
 
-use App\Relation;
+use App\Models\Relation;
 use Illuminate\Validation\Rule;
 
 class UpdateRelationCommand extends CreateRelationCommand

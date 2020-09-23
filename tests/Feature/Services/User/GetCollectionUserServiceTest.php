@@ -4,7 +4,7 @@ namespace Tests\Feature\Services\User;
 
 use App\Http\Resources\User\UserCollectionResource;
 use App\Http\Services\User\GetCollectionUserService;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;

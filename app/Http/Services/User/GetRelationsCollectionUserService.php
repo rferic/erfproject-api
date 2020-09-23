@@ -6,7 +6,7 @@ namespace App\Http\Services\User;
 
 use App\Http\Commands\Relation\GetCollectionRelationsCommand;
 use App\Http\Resources\Relation\RelationCollectionResource;
-use App\User;
+use App\Models\User;
 
 class GetRelationsCollectionUserService
 {

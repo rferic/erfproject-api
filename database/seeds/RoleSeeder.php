@@ -11,13 +11,13 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Role::class)->create([
+        factory(\App\Models\Role::class)->create([
             'name' => 'root',
             'display_name' => 'Root',
             'description' => 'Root role'
         ]);
 
-        factory(\App\Role::class)->create([
+        factory(\App\Models\Role::class)->create([
             'name' => 'client',
             'display_name' => 'Client',
             'description' => 'Client role'

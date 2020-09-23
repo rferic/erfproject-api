@@ -5,8 +5,8 @@ namespace App\Http\Commands\Relation;
 
 
 use App\Http\Commands\Interfaces\SaveModel;
-use App\Relation;
-use App\User;
+use App\Models\Relation;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 

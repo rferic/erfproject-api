@@ -5,7 +5,7 @@ namespace App\Http\Services\User;
 
 
 use App\Http\Commands\Relation\DestroyRelationCommand;
-use App\User;
+use App\Models\User;
 
 class DestroyRelationUserService
 {
@@ -16,7 +16,7 @@ class DestroyRelationUserService
         $this->command = new DestroyRelationCommand($applicant, $addressee);
     }
 
-    public function execute (): \App\Relation
+    public function execute (): \App\Models\Relation
     {
         return $this->command->execute();
     }

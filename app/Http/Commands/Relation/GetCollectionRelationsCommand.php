@@ -6,7 +6,7 @@ namespace App\Http\Commands\Relation;
 
 use App\Http\Commands\Abstracts\GetCollectionAbstract;
 use App\Http\Commands\Interfaces\GetCollection;
-use App\Relation;
+use App\Models\Relation;
 
 class GetCollectionRelationsCommand extends GetCollectionAbstract implements GetCollection
 {

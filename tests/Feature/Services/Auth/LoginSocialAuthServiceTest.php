@@ -3,8 +3,8 @@
 namespace Tests\Feature\Services\Auth;
 
 use App\Http\Services\Auth\LoginSocialAuthService;
-use App\LinkedSocialAccount;
-use App\User;
+use App\Models\LinkedSocialAccount;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;

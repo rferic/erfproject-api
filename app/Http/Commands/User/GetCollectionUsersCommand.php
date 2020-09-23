@@ -6,7 +6,7 @@ namespace App\Http\Commands\User;
 
 use App\Http\Commands\Abstracts\GetCollectionAbstract;
 use App\Http\Commands\Interfaces\GetCollection;
-use App\User;
+use App\Models\User;
 
 class GetCollectionUsersCommand extends GetCollectionAbstract implements GetCollection
 {

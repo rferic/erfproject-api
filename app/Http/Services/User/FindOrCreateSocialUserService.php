@@ -5,7 +5,7 @@ namespace App\Http\Services\User;
 
 
 use App\Http\Commands\User\GetLinkedSocialAccountUserCommand;
-use App\User;
+use App\Models\User;
 use Laravel\Socialite\Two\User as ProviderUser;
 
 class FindOrCreateSocialUserService
